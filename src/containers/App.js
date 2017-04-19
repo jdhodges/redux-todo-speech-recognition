@@ -3,10 +3,12 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Header from '../components/Header'
 import MainSection from '../components/MainSection'
+import Interpreter from '../components/Interpreter'
 import * as TodoActions from '../actions'
 
 const App = ({todos, actions}) => (
   <div>
+    <Interpreter actions={actions} />
     <Header addTodo={actions.addTodo} />
     <MainSection todos={todos} actions={actions} />
   </div>
