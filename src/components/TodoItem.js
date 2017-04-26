@@ -29,13 +29,14 @@ export default class TodoItem extends Component {
 
   render() {
     const { todo, completeTodo, deleteTodo } = this.props
+    const { id } = todo
 
     let element
     if (this.state.editing) {
       element = (
         <TodoTextInput text={todo.text}
                        editing={this.state.editing}
-                       onSave={(text) => this.handleSave(todo.id, text)} />
+                       onSave={(text) => this.handleSave({ id, text })} />
       )
     } else {
       element = (
@@ -43,12 +44,12 @@ export default class TodoItem extends Component {
           <input className="toggle"
                  type="checkbox"
                  checked={todo.completed}
-                 onChange={() => completeTodo(todo.id)} />
+                 onChange={() => completeTodo({ id })} />
           <label onDoubleClick={this.handleDoubleClick}>
             {todo.text}
           </label>
           <button className="destroy"
-                  onClick={() => deleteTodo(todo.id)} />
+                  onClick={() => deleteTodo({ id })} />
         </div>
       )
     }
